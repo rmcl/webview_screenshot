@@ -84,6 +84,7 @@
     id passThrough = [curWebView.layer valueForKey:@"passthrough"];
     [curWebView.layer setValue:nil forKey:@"passthrough"];
     
+    // Add the current webview to the list to be released.
     [_garbageWebViews addObject:curWebView];
     
     // Send the message.
@@ -91,6 +92,7 @@
 }
 
 - (void)dealloc {
+    [_garbageWebViews release];
     [super dealloc];
 }
 
